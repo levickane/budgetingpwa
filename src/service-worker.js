@@ -6,7 +6,7 @@ const DATA_CACHE_NAME = "data-cache-v1";
 const FILES_TO_CACHE = [
   './',
   './index.html',
-  './dist/manifest.webmanifest',
+  './manifest.json',
   './styles.css',
   './index.js',
   './icons/icon-192x192.png',
@@ -65,7 +65,7 @@ self.addEventListener('fetch', function(evt) {
                 // Network request failed, try to get it from the cache.
                 return cache.match(evt.request);
               });
-          }).catch(err => console.log(err))
+          }).catch(err => console.log('hello',err))
         );
     
         return;
