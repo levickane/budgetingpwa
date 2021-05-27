@@ -1,13 +1,19 @@
+const indexedDB =
+  window.indexedDB ||
+  window.mozIndexedDB ||
+  window.webkitIndexedDB ||
+  window.msIndexedDB ||
+  window.shimIndexedDB;
+
 let db;
 // create a new db request for a "BudgetDB" database.
-const request = window.indexedDB.open('BudgetDB', 1);
+const request = indexedDB.open('budget', 1);
 
 request.onupgradeneeded = function (event) {
   // create object store called "BudgetStore" and set autoIncrement to true
-  const db = event.target.result;
+  let db = event.target.result;
 
-  const BudgetStore = db.createObjectStore('BudgetTable', {
-    keyPath: 'BudgetId',
+  db.createObjectStore('BudgetTable', {
     autoIncrement: true
   });
 };
@@ -22,9 +28,7 @@ request.onsuccess = function (event) {
 
 request.onerror = function (event) {
   // log error here
-  if (err) {
-    console.log(err);
-  }
+  console.log(event.target.err);
 };
 
 function saveRecord(record) {
@@ -38,7 +42,6 @@ function saveRecord(record) {
 }
 
 function checkDatabase() {
-  const db = request.result;
   const transaction = db.transaction(['BudgetTable'], 'readwrite');
   const BudgetStore = transaction.objectStore('BudgetTable');
   // open a transaction on your pending db
@@ -55,9 +58,10 @@ function checkDatabase() {
           'Content-Type': 'application/json'
         }
       })
-        .then((response) => response.json())
+        .then((response) => {
+          return response.json();
+        })
         .then(() => {
-          const db = request.result;
           const transaction = db.transaction(['BudgetTable'], 'readwrite');
           const objectStore = transaction.objectStore('BudgetTable');
           objectStore.clear();
