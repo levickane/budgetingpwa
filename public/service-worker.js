@@ -6,7 +6,7 @@ const DATA_CACHE_NAME = 'data-cache-v1';
 const FILES_TO_CACHE = [
   './',
   './db.js',
-  './manifest.json',
+  './manifest.webmanifest',
   './styles.css',
   './index.js',
   './icons/icon-192x192.png',
