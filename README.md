@@ -2,7 +2,7 @@
 
 ## Description
 
-This application was built for people who like to track their expenses no matter where they are. Whether there's poor service, or no service at all - any data that has been entered will get cached on the local browser and then uploaded to the cloud database when you're back online! A live link can be viewed [HERE](https://git.heroku.com/radiant-oasis-26121.git)
+This application was built for people who like to track their expenses no matter where they are. Whether there's poor service, or no service at all - any data that has been entered will get cached on the local browser and then uploaded to the cloud database when you're back online! A live link can be viewed [HERE](https://radiant-oasis-26121.herokuapp.com/)
 ![budgetTrackingScreenshot](./public/images/budgetTracking.png)
 
 ## Table of Contents
